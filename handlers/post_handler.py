@@ -13,6 +13,7 @@ def post_cat_pic(db_helper,table,request):
     id=get_picture_key(filename)
     cat = db_helper.get(table,False,id)
     if cat:
+        print("Conflict while adding picture",id)
         return get_error_response(409,f"Picture with the same filename {id} already exists")
 
     if allowed_file(filename):
@@ -21,4 +22,5 @@ def post_cat_pic(db_helper,table,request):
         db_helper.add(cat_picture)
         return "Cat picture uploaded successfully"
     else:
+        print("unknown filetype received",filename)
         return get_error_response(400,"Invalid file type received")

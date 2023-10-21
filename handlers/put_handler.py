@@ -21,4 +21,5 @@ def update_pic(db_helper,table,request,id):
         db_helper.db.session.commit()
         return "Cat picture updated successfully"
     else:
+        print("invalid filetype received during update",file.filename)
         return get_error_response(400,"Invalid file type received")

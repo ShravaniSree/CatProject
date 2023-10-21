@@ -1,5 +1,11 @@
 # Cats API
 
+## Introduction
+
+- API for managing CRUD operations on CAT Pictures.
+- This API is built on Flask.
+- It uses SQLAlchemy to store the picture data in the DB.
+
 ## Setup
 
 - This project requires python3.11 or higher.
