@@ -1,0 +1,303 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Cat Picture API",
+    "description": "API for managing cat pictures"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/upload": {
+      "post": {
+        "summary": "Upload a cat picture",
+        "description": "Upload a new cat picture",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "description": "The cat picture file to upload"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully uploaded",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "A success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Required file input not provided"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Same cat filename already exists in DB"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get": {
+      "get": {
+        "summary": "Get all cat pictures",
+        "description": "Retrieve a list of all cat pictures",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CatPicture"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get/{id}": {
+      "get": {
+        "summary": "Get a specific cat picture by ID",
+        "description": "Retrieve a specific cat picture by its ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CatPicture"
+            }
+          },
+          "404": {
+            "description": "Image Not Found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CatPicture"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{id}": {
+      "put": {
+        "summary": "Update a cat picture by ID",
+        "description": "Update a specific cat picture by its ID",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "description": "The updated cat picture file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "A success message"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Required file input not provided"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Image Not Found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CatPicture"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "delete": {
+        "summary": "Delete a cat picture by ID",
+        "description": "Delete a specific cat picture by its ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "A success message"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Image Not Found",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CatPicture"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Internal server error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CatPicture": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the cat picture"
+        },
+        "url": {
+          "type": "string",
+          "description": "The URL of the cat picture"
+        }
+      }
+    }
+  }
+}
