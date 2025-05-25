@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from handlers.post_handler import post_cat_pic
+from ..handlers.post_handler import post_cat_pic
 
 class TestPostCatPic(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from handlers.delete_handler import delete_pic
+from ..handlers.delete_handler import delete_pic
 
 class TestDeletePic(unittest.TestCase):
 

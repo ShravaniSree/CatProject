@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
-from test_utils import MockRequest
-from handlers.put_handler import update_pic
+from .test_utils import MockRequest
+from ..handlers.put_handler import update_pic
 
 class TestUpdatePic(unittest.TestCase):
 

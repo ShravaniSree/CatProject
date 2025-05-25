@@ -1,9 +1,9 @@
 import unittest
 import io
 from unittest.mock import patch, Mock
-from handlers.get_handler import get_selected,get_all
+from ..handlers.get_handler import get_selected,get_all
 from utils import get_error_response
-from test_utils import MockRequest
+from .test_utils import MockRequest
 
 
 class Test_Get_Handler(unittest.TestCase):
